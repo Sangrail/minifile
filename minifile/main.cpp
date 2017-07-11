@@ -2,55 +2,41 @@
 //
 
 #include "stdafx.h"
-#include "magic.h"
-
-#pragma comment(lib, "magic1.lib")
+#include "libmagic.h"
+#include "yara_wrapper.h"
 
 using namespace std;
-
-class libmagic
-{
-public:
-	libmagic():
-		_flags(0), 
-		_magic(nullptr),
-		_magicfile(nullptr)
-	{
-		_magic = magic_open(_flags);
-		magic_load(_magic, _magicfile);
-	}
-
-	~magic()
-	{
-		if(_magic)
-			magic_close(_magic);
-	}
-
-	int getVersion()
-	{
-		return magic_version();
-	}
-
-	const char* getId(const char* filename)
-	{
-		return magic_file(_magic, filename);
-	}
-
-private:
-	int _flags;
-
-	magic_set *_magic;
-	const char *_magicfile;
-};
+using namespace yara_wrapper;
 
 int main()
 {
 	const char* filename = R"(C:\Users\jayco\Downloads\libmagic-alpha.tar.gz)";
+	const char* rules_compiled = R"(magic.yarac)";
+	const char* rules_text = R"(magic.yara)";
 
-	libmagic m;
+	classifier::libmagic m;
 
 	printf("Version: %d\n", m.getVersion());
-	printf("%s: %s",filename, m.getId(filename));
+	printf("%s: %s\n",filename, m.getId(filename));
+
+	Yara yara;
+
+	auto ld = yara.Initialise(rules_compiled);
+
+	if (ld)
+	{
+		ld = yara.ScanFile(filename);
+	}
+
+
+	
+
+	//analyse global characteristics of the file
+
+	//map file type to plugin and analyse using file-specific plugins
+
+
+
     return 0;
 }
 

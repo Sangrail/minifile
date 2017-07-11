@@ -15,16 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <ClInclude Include="stdafx.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="libmagic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="yara_wrapper.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -32,22 +29,11 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Dex.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="magic1.lib" />
-    <Library Include="yara\lib\x64\libyara64.lib" />
-    <Library Include="yara\lib\x86\libyara32.lib" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="magic.mgc" />
-    <None Include="..\Debug\magic1.dll" />
-    <None Include="..\Debug\regex2.dll" />
-    <None Include="..\Debug\zlibwapi.dll" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.md" />
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
